@@ -55,7 +55,7 @@ STAGE2_SIZE=1
 
 all_obj = $(sort $(stage1_obj) $(stage2_obj)) rt0.o
 
-AUXDIR =../../tools#
+AUXDIR =../tools#
 
 all : $(bin) 
 

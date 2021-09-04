@@ -64,5 +64,26 @@ void load_stage2_block();
 
 void halt();
 
+/* Shows date. */
+ 
+#define DATE_CMD "date"
+
+/* Shows time. */
+
+#define TIME_CMD "time"
+
+#define HELP_CMD "help"
+
+#define QUIT_CMD "quit"
+
+#define quit() printnl("Sorry...")
+
+#define NOT_FOUND " command not found"
+
+void date();
+
+void time();
+
+void main_stage2();
 
 #endif

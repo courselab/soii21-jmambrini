@@ -33,7 +33,7 @@ bin = mbr.bin
 
 objs = main.o mbr.o
 
-AUXDIR =../../tools#
+AUXDIR =../tools#
 
 all : $(bin) 
 
@@ -45,7 +45,7 @@ all : $(bin)
 ifndef UPDATED
 $(MAKECMDGOALS) : Makefile
 
-Makefile_deps = Makefile.m4 ../../tools/docm4.m4 ../../tools/bintools.m4
+Makefile_deps = Makefile.m4 ../tools/docm4.m4 ../tools/bintools.m4
 
 Makefile : $(shell if test -f Makefile.m4; then echo $(Makefile_deps); fi);
 	@if ! test -f .dist; then\
@@ -135,12 +135,12 @@ do_pack:
 	mkdir $(TARNAME)
 	(cd .. && make clean && make)
 	for i in $(PACK_FILES_C); do\
-	  cp ../../tools/c-head-pack.c $(TARNAME)/$$i ;\
-	  ../../tools/stripcomment -c $$i >> $(TARNAME)/$$i;\
+	  cp ../tools/c-head-pack.c $(TARNAME)/$$i ;\
+	  ../tools/stripcomment -c $$i >> $(TARNAME)/$$i;\
 	done
 	for i in $(PACK_FILES_MAKE); do\
-	  cp ../../tools/Makefile-head-pack $(TARNAME)/$$i ;\
-	  ../../tools/stripcomment -h $$i >> $(TARNAME)/$$i;\
+	  cp ../tools/Makefile-head-pack $(TARNAME)/$$i ;\
+	  ../tools/stripcomment -h $$i >> $(TARNAME)/$$i;\
 	done
 	cp $(PACK_FILES_TEXT) $(TARNAME)
 	touch $(TARNAME)/.dist
