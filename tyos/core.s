@@ -16,7 +16,7 @@ print:
 	movl	%ecx, %edx
 	movl	%edx, %ebx
 #APP
-# 32 "core.c" 1
+# 38 "core.c" 1
 	        mov   $0x0e, %ah           ;        mov   $0x0, %si            ;loop7:                             ;        mov   (%bx, %si), %al    ;        cmp   $0x0, %al            ;        je    end7                 ;        int   $0x10                 ;        add   $0x1, %si            ;        jmp   loop7                ;end7:                              ;        ret                         ;
 # 0 "" 2
 #NO_APP
@@ -43,7 +43,7 @@ fatal:
 	movl	$nl, %ecx
 	call	print
 #APP
-# 57 "core.c" 1
+# 63 "core.c" 1
 	halt24:       ;   hlt;       ;   jmp halt24 
 # 0 "" 2
 #NO_APP
@@ -58,7 +58,7 @@ clear:
 .LFB2:
 	.cfi_startproc
 #APP
-# 72 "core.c" 1
+# 78 "core.c" 1
 	 mov $0x0600, %ax                 ; mov $0x07, %bh                   ; mov $0x0, %cx                    ; mov $0x184f, %dx                 ; int $0x10                         ; ret                                
 # 0 "" 2
 #NO_APP
@@ -73,8 +73,8 @@ load_stage2_block:
 .LFB3:
 	.cfi_startproc
 #APP
-# 92 "core.c" 1
-	reset42:                    ;    mov $0x0, %ah          ;    mov $0x0, %dl          ;    int $0x13               ;    jnc load42             ;    call fatal              ;   mov $0x0, %cx           ;   mov %cx, %es           ; load42:                    ;   mov $0x2, %ah           ;   mov $1, %al           ;   mov $0x0, %dl           ;   mov $0x0, %ch           ;   mov $0x0, %dh           ;   mov $0x2, %cl           ;   mov $0x7e00, %bx        ;   int $0x13                ;   jc fatal                 ;   ret                      ;
+# 98 "core.c" 1
+	reset42:                    ;    mov $0x0, %ah          ;    mov $0x0, %dl          ;    int $0x13               ;    jnc load42             ;    call fatal              ; load42:                    ;   mov $0x0, %cx           ;   mov %cx, %ds           ;   mov $0x2, %ah           ;   mov $3, %al        ;   mov $0x0, %dl           ;   mov $0x0, %ch           ;   mov $0x0, %dh           ;   mov $0x2, %cl           ;   mov $0x7e00, %bx        ;   int $0x13                ;   jc fatal                 ;   ret                      ;
 # 0 "" 2
 #NO_APP
 	nop

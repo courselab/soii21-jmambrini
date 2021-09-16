@@ -1,10 +1,14 @@
-/* tyos.c -  Core functions.
+/* <file> - <One-line note about this file>
  
-   Copyright (c) 2021, Monaco F. J. <monaco@usp.br>
+   Copyright (c) <YEAR>, <AUTHOR> 
 
-   This file is part of SYSeg.
+   This piece of software is a derivative work of SYSeg, by Monaco F. J.
+   SYSeg is distributed under the license GNU GPL v3, and is available
+   at the official repository https://www.gitlab.com/monaco/syseg.
 
-   SYSeg is free software: you can redistribute it and/or modify
+   This file is part of <PROJECT>.
+
+   <PROJECT> is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
@@ -17,6 +21,8 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
 
 #include <tyos.h>
 
@@ -104,12 +110,13 @@ void __attribute__((naked)) load_stage2_block()
 
      /* Load stage 2.   */
 
-     "   mov $0x0, %%cx           ;"
-     "   mov %%cx, %%es           ;"
-     
      " load%=:                    ;"
+
+     "   mov $0x0, %%cx           ;" /* Just to be sure we're in */
+     "   mov %%cx, %%ds           ;" /* segment zero. */
+     
      "   mov $0x2, %%ah           ;" /* Means read sector. */
-     "   mov %[size], %%al           ;" /* Number of sectors to read */
+     "   mov %[size], %%al        ;" /* Number of sectors to read */
      "   mov $0x0, %%dl           ;" /* Drive    (floppy is 0)*/
      "   mov $0x0, %%ch           ;" /* Cylinder (starts at 0) */
      "   mov $0x0, %%dh           ;" /* Head     (starts at 0) */

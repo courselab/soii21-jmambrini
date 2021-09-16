@@ -1,22 +1,27 @@
-
-#   Makefile - Makefile script.
+#  Makefile - Make script.
+# 
+#   Copyright (c) <YEAR>, <AUTHOR> 
 #
-#   Copyright (c) 2001 - Monaco F. J. 
+#   This piece of software is a derivative work of SYSeg, by Monaco F. J.
+#   SYSeg is distributed under the license GNU GPL v3, and is available
+#   at the official repository https://www.gitlab.com/monaco/syseg.
 #
-#   This file is part of SYSeg.
+#   This file is part of <PROJECT>.
 #
-#   SYSeg is free software: you can redistribute it and/or modify
+#   <PROJECT> is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
 #   the Free Software Foundation, either version 3 of the License, or
 #   (at your option) any later version.
-#
+#   
 #   This program is distributed in the hope that it will be useful,
 #   but WITHOUT ANY WARRANTY; without even the implied warranty of
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #   GNU General Public License for more details.
-#
+#   
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
 
 
 
@@ -33,17 +38,17 @@ stage1_obj = stage1.o core.o
 
 # Stage 2 also uses core.c, but includes a lot more implemented in tyos.c
 
-stage2_obj = stage2.o core.o tyos.o
+stage2_obj = stage2.o core.o tyos.o mbr.o
 
 # Size of stage2 in 512-byte sectors
 
-STAGE2_SIZE=1
+STAGE2_SIZE=3
 
 # Auxiliary variables to simplify this Makefile
 
 all_obj = $(sort $(stage1_obj) $(stage2_obj)) rt0.o
 
-AUXDIR =../tools#
+AUXDIR =..//tools#
 
 all : $(bin) 
 
@@ -55,7 +60,7 @@ all : $(bin)
 ifndef UPDATED
 $(MAKECMDGOALS) : Makefile
 
-Makefile_deps = Makefile.m4 ../tools/docm4.m4 ../tools/bintools.m4
+Makefile_deps = Makefile.m4 ..//tools/docm4.m4 ..//tools/bintools.m4
 
 Makefile : $(shell if test -f Makefile.m4; then echo $(Makefile_deps); fi);
 	@if ! test -f .dist; then\
@@ -120,9 +125,9 @@ clean-extra:
 # Programming exercise
 #
 
-PACK_FILES_C = core.c  rt0.c  stage1.c  stage2.c  tyos.c stage1.ld stage2.ld tyos.h
+PACK_FILES_C = core.c  rt0.c  stage1.c  stage2.c  tyos.c stage1.ld stage2.ld tyos.h mbr.c mbr.h
 PACK_FILES_MAKE = Makefile
-PACK_FILES_TEXT = README ../tools/COPYING 
+PACK_FILES_TEXT = README ..//tools/COPYING 
 PACK_FILES_SH =
 
 
@@ -166,12 +171,12 @@ do_pack:
 	mkdir $(TARNAME)
 	(cd .. && make clean && make)
 	for i in $(PACK_FILES_C); do\
-	  cp ../tools/c-head-pack.c $(TARNAME)/$$i ;\
-	  ../tools/stripcomment -c $$i >> $(TARNAME)/$$i;\
+	  cp ..//tools/c-head-pack.c $(TARNAME)/$$i ;\
+	  ..//tools/stripcomment -c $$i >> $(TARNAME)/$$i;\
 	done
 	for i in $(PACK_FILES_MAKE); do\
-	  cp ../tools/Makefile-head-pack $(TARNAME)/$$i ;\
-	  ../tools/stripcomment -h $$i >> $(TARNAME)/$$i;\
+	  cp ..//tools/Makefile-head-pack $(TARNAME)/$$i ;\
+	  ..//tools/stripcomment -h $$i >> $(TARNAME)/$$i;\
 	done
 	cp $(PACK_FILES_TEXT) $(TARNAME)
 	touch $(TARNAME)/.dist

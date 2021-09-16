@@ -1,10 +1,14 @@
-/* mbr.h -  MbrCmd command
+/* <file> - <One-line note about this file>
  
-   Copyright (c) 2021, Monaco F. J. <monaco@usp.br>
+   Copyright (c) <YEAR>, <AUTHOR> 
 
-   This file is part of SYSeg.
+   This piece of software is a derivative work of SYSeg, by Monaco F. J.
+   SYSeg is distributed under the license GNU GPL v3, and is available
+   at the official repository https://www.gitlab.com/monaco/syseg.
 
-   SYSeg is free software: you can redistribute it and/or modify
+   This file is part of <PROJECT>.
+
+   <PROJECT> is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
@@ -17,6 +21,8 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
 
 #ifndef TOS_H
 #define TOS_H
@@ -50,7 +56,7 @@ void __attribute__((naked)) help (void);
 
 /* Compare to strings up to BUFFER_MAX_LENGTH-1. */
 
-#define BUFFER_MAX_LENGTH 5
+#define BUFFER_MAX_LENGTH 3
 
 int __attribute__((fastcall, naked)) compare (char *s1, char *s2);
 
@@ -60,30 +66,14 @@ void load_stage2_block();
 
 #define PROMPT ">"
 
+#define INIT_MSG "Welcome! The commands are: date, time, quit and help!\n\n"
+
 /* Halt. */
 
 void halt();
 
-/* Shows date. */
- 
-#define DATE_CMD "date"
+/* Shell */
 
-/* Shows time. */
-
-#define TIME_CMD "time"
-
-#define HELP_CMD "help"
-
-#define QUIT_CMD "quit"
-
-#define quit() printnl("Sorry...")
-
-#define NOT_FOUND " command not found"
-
-void date();
-
-void time();
-
-void main_stage2();
+int shell();
 
 #endif

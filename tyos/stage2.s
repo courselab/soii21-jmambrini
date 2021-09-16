@@ -15,8 +15,7 @@ init:
 	call	print
 	movl	$nl, %ecx
 	call	print
-	call	halt
-	call	main_stage2
+	call	shell
 	nop
 	ud2
 	.cfi_endproc

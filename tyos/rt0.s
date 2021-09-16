@@ -7,7 +7,7 @@ _start:
 .LFB0:
 	.cfi_startproc
 #APP
-# 10 "rt0.c" 1
+# 34 "rt0.c" 1
 	        xorw %ax, %ax                ;        movw %ax, %ds                ;        movw %ax, %es                ;        movw %ax, %fs                ;        movw %ax, %gs                ;        movw %ax, %ss                ;        mov $__END_STACK__, %sp     ;        call main                     ; loop5:                              ;        hlt                           ;        jmp loop5                    
 # 0 "" 2
 #NO_APP
